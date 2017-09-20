@@ -1,0 +1,1798 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Advanced CSS</title>
+
+		<meta name="description" content="Presentation to lecture about how the different features of CSS works">
+		<meta name="author" content="Yurii Matsko">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/epam.css" id="theme">
+		<link rel="stylesheet" href="css/main.css">
+
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!--[if lt IE 9]>
+			<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		<div class="reveal">
+			<!-- SLIDES -->
+			<div class="slides">
+
+				<!-- TITLE -->
+				<section data-background="img/title.jpg" data-state="title-page" class="has-dark-background-custom title">
+					<h1>ADVANCED CSS</h1>
+					<p>Yurii Matsko</p>
+					<div>
+						<img class="plain" src="img/epam_logo_white.png" alt="EPAM">
+					</div>
+				</section>
+
+				<section class="agenda">
+					<h2>Agenda</h2>
+					<div>
+						<ul class="fragment">
+							<li>CSS Selectors</li>
+							<li>CSS Variables</li>
+							<li>CSS Units</li>
+						</ul>
+ 						<ul class="fragment">
+							<li>Round borders</li>
+							<li>Background attributes in CSS3</li>
+							<li>Shadows and Gradients</li>
+							<li>CSS Filters</li>
+						</ul>
+						<ul class="fragment">
+							<li>Transformation with CSS in 2D...and 3D!</li>
+							<li>Transition/Animation</li>
+						</ul>
+						<ul class="fragment">
+							<li>Layouts. Flex and columns</li>
+							<li>Your questions...</li>
+						</ul>
+					</div>
+				</section>
+				<!-- /TITLE -->
+
+				<!-- SECTION 1 -->
+				<section data-background="#666" class="has-dark-background-custom">
+					<h1>CSS Basics</h1>
+				</section>
+					<!-- LEVEL 1 -->
+					<section class="stack">
+						<section>
+							<h2>CSS Selectors Level 1</h2>
+						</section>
+						<section>
+							<pre><code class="hljs css">E { /* rules */ }
+E.class { /* rules */ }
+E#id { /* rules */ }
+
+E:link { /* rules */ }
+E:visited { /* rules */ }
+E:active { /* rules */ }
+
+E F { /* rules */ }</code></pre>
+						</section>
+					</section>
+					<!-- /LEVEL 1 -->
+
+					<!-- LEVEL 2 -->
+					<section class="stack">
+						<section>
+							<h2>CSS Selectors Level 2</h2>
+						</section>
+						<section>
+							<pre><code class="hljs css">* { /* rules */ }
+E[foo] { /* rules */ }
+E[foo=bar] { /* rules */ }
+E[foo~="bar"] { /* rules */ }
+E[foo|="en"] { /* rules */ }
+E:lang() { /* rules */ }
+
+E:hover { /* rules */ }
+E:focus { /* rules */ }
+E:first-child { /* rules */ }
+E > F { /* rules */ }
+E + F { /* rules */ }</code></pre>
+						</section>
+					</section>
+					<!-- /LEVEL 2 -->
+
+					<!-- LEVEL 3 -->
+					<section class="stack">
+						<section>
+							<h2>CSS Selectors Level 3</h2>
+						</section>
+						<section>
+							<pre><code class="hljs css">E[foo^="bar"] { /* rules */ }
+E[foo$="bar"] { /* rules */ }
+E[foo*="bar"] { /* rules */ }
+
+E:enabled { /* rules */ }
+E:disabled { /* rules */ }
+E:checked { /* rules */ }
+E:empty { /* rules */ }
+
+E ~ F { /* rules */ }
+
+:root { /* rules */ }</code></pre>
+						</section>
+
+						<section>
+							<pre><code class="hljs css">E:nth-child(n) { /* rules */ }
+E:last-child { /* rules */ }
+E:nth-last-child(n) { /* rules */ }
+E:only-child { /* rules */ }
+
+E:first-of-type { /* rules */ }
+E:nth-of-type(n) { /* rules */ }
+E:last-of-type { /* rules */ }
+E:nth-last-of-type(n) { /* rules */ }
+E:only-of-type { /* rules */ }</code></pre>
+						</section>
+					</section>
+					<!-- /LEVEL 3 -->
+
+					<!-- LEVEL 3/4 -->
+					<section class="stack">
+						<section>
+							<h2>CSS Selevtors Level 3/4</h2>
+						</section>
+						<section>
+							<pre><code class="hljs css">E:not(s) { /* rules */ }
+E:matches(s) { /* rules */ }
+
+E:default { /* rules */ }
+
+E:in-range { /* rules */ }
+E:out-of-range { /* rules */ }
+E:required { /* rules */ }
+E:optional { /* rules */ }
+
+E:read-only { /* rules */ }
+E:read-write { /* rules */ }</code></pre>
+						</section>
+					</section>
+					<!-- /LEVEL 3/4 -->
+
+					<!-- LEVEL 4 -->
+					<section class="stack">
+						<section>
+							<h2>CSS Selectors Level 4</h2>
+						</section>
+						<section>
+							<pre><code class="hljs css">E[foo="bar" i] { /* rules */ }
+E:dir(ltr) { /* rules */ }
+
+E:any-link { /* rules */ }
+E:local-link { /* rules */ }
+E:local-link(0) { /* rules */ }
+
+E:current { /* rules */ }
+E:current(s) { /* rules */ }
+E:past { /* rules */ }
+E:future { /* rules */ }</code></pre>
+						</section>
+						<section>
+							<pre><code class="hljs css">E:indeterminate { /* rules */ }
+
+E:nth-match(n of s) { /* rules */ }
+E:nth-last-match(n of s) { /* rules */ }
+
+E:column(s) { /* rules */ }
+E:nth-column(n) { /* rules */ }
+E:nth-last-column(n) { /* rules */ }
+
+E /foo/ F { /* rules */ }
+
+E! > F { /* rules */ }</code></pre>
+						</section>
+					</section>
+					<!-- /LEVEL 4 -->
+
+					<!-- VARIABLES -->
+					<section class="stack variables">
+						<section>
+							<h2>CSS Variables</h2>
+						</section>
+						<section>
+							<h4>Scheme of use</h4>
+							<pre><code class="hljs css">/* Declare somewhere a variable */ 
+--variable-name: value;
+
+/* Use variable in rule */
+rule: var(--variable-name);
+
+/* Doesn't matter where you declare, before/after using, it all the same works */</code></small></pre>
+						</section>
+						<section class="root">
+							<h4>Variable usage</h4>
+							<pre><code class="hljs css">:root {
+	--color: #39c2d7;
+}
+
+div {
+	background-color: var(--color);
+}</code></pre>
+							<div></div>
+						</section>
+						<section class="scope">
+							<h4>Variable scope</h4>
+							<div>
+								<pre><code class="hljs css">&lt;div class="one"&gt;
+  &lt;div class="two"&gt;
+    &lt;div class="three"&gt; &lt;/div&gt;
+
+    &lt;div class="four"&gt; &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+								<pre><code class="hljs css">.two {
+    --color: #a3c644; /* green */
+}
+
+.three {
+    --color: #b22746; /* red */
+}</code></pre>
+							</div>
+							<p>.one, .three <small>and</small> .four <small>divs have "background-color: --color;"</small> rule</p>
+							<p>what backgrounds will we have in result?</p>
+							<div class="fragment one">
+								<div class="two">
+									<div class="three">3</div>
+									<div class="four">4</div>
+								</div>
+							</div>
+						</section>
+					</section>
+					<!-- /VARIABLES -->
+
+					<!-- UNITS -->
+					<section class="stack units">
+						<section>
+							<h2>CSS Units</h2>
+						</section>
+						<section>
+							<h4>Relative Lengths</h4>
+							<pre><code class="hljs css">em	/* relative to the font-size of the parent element */
+ex	/* relative to height of the "x" in lowercase */
+ch	/* relative to width of the "0" */
+rem	/* relative to the font-size of root element */
+
+vw	/* relative to 1% of the width of the viewport */
+vh	/* relative to 1% of the height of the viewport */
+vmin	/* relative to 1% of viewport's* smaller dimension */
+vmax	/* relative to 1% of viewport's* larger dimension */
+
+%	/* relative to the same property of the parent element */</code></pre>
+						</section>
+						<section>
+							<h4>Absolute Lengths</h4>
+							<pre><code class="hljs css">cm	/* centimeters */
+mm	/* millimeters */
+
+in	/* inches (1in = 96px = 2.54cm) */
+px	/* pixels (1px = 1/96th of 1in) */
+
+pt	/* points (1pt = 1/72 of 1in) */
+pc	/* picas (1pc = 12 pt) */</code></pre>
+						</section>
+						<section class="example">
+							<p class="vh-vmin"><span>10vh</span> and <span>10vmin</span></p>
+							<p class="px-in"><span>96px</span> and <span>1in</span></p>
+							<p class="em-rem-per"><span>2em</span> and <span>4.75rem</span> and <span>200%</span></p>
+							<p class="pc-pt"><span>4pc</span> and <span>48pt</span></p>
+						</section>
+					</section>
+					<!-- /UNITS -->
+				<!-- /SECTION 1 -->
+
+				<!-- SECTION 2 -->
+				<section data-background="#39c2d7" class="has-dark-background-custom blue">
+					<h1>Block Styling</h1>
+				</section>
+					<!-- ROUND BORDERS -->
+					<section class="stack border-radius">
+						<section class="blue">
+							<h2>Round Borders</h2>
+						</section>
+						<section class="blue rule">
+							<h4>border-radius rule</h4>
+							<pre><code class="hljs css">border-radius: all;
+
+border-radius: tl-br tr-bl;
+
+border-radius: tl tr-bl br;
+
+border-radius: tl tr br bl;</code></pre>
+							<div>
+								<span>tl</span>
+								<span>tr</span>
+								<span>br</span>
+								<span>bl</span>
+								<span>border-radius: 15px;</span>
+							</div>
+						</section>
+						<section class="blue example">
+							<div class="row">
+								<div class="element">
+									<pre><code class="hljs css">border-radius: 50px;</code></pre>
+									<div></div>
+								</div>
+								<div class="element">
+									<pre><code class="hljs css">border-radius: 100% 0;</code></pre>
+									<div></div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="element">
+									<pre><code class="hljs css">border-radius: 30% 20px 100%;</code></pre>
+									<div></div>
+								</div>
+								<div class="element">
+									<pre><code class="hljs css">border-radius: 10% 20% 30% 40%;</code></pre>
+									<div></div>
+								</div>
+							</div>
+						</section>
+						<section class="blue single">
+							<h4>different strength of rounding</h4>
+							<pre><code class="hljs css">border-radius: x/y;
+
+border-top-left-radius: x y;
+...
+border-bottom-left-radius: x y;</code></pre>
+							<div>
+								<span>border-top-left-radius: 70% 40%;</span>
+							</div>
+						</section>
+					</section>
+					<!-- /ROUND BORDERS -->
+
+					<!-- BACKGROUND ATTRIBUTES -->
+					<section class="stack background">
+						<section class="blue">
+							<h2>Background attributes</h2>
+						</section>
+						<section class="blue">
+							<pre><code class="hljs css">background: background-color
+	    background-image
+	    background-repeat
+	    background-attachment
+	    background-position;
+		
+	    background-clip
+	    background-origin
+	    background-size</code></pre>
+						</section>
+						<section class="blue attachment">
+							<h4>background-attachment</h4>
+							<pre><code class="hljs css">background-attachment: fixed | scroll | local;</code></pre>
+							<div class="wrapper">
+								<div>
+									<div>
+										<span>f i x e d</span>
+									</div>
+									<div>
+										<span>s c r o l l</span>
+									</div>
+									<div>
+										<span>l o c a l</span>
+									</div>
+								</div>
+							</div>
+						</section>
+						<section class="blue attachment local">
+							<h4>background-attachment</h4>
+							<pre><code class="hljs css">background-attachment: fixed | scroll | local;</code></pre>
+							<div class="wrapper">
+								<div>
+									<span>f i x e d</span>
+								</div>
+								<div>
+									<span>s c r o l l</span>
+								</div>
+								<div>
+									<span>l o c a l</span>
+								</div>
+							</div>
+						</section>
+						<section class="blue clip">
+							<h4>background-clip</h4>
+							<pre><code class="hljs css">background-clip: padding-box | border-box | content-box;</code></pre>
+							<div>
+								<div>padding-box</div>
+								<div>border-box</div>
+								<div>content-box</div>
+							</div>
+						</section>
+						<section class="blue origin">
+							<h4>background-origin</h4>
+							<pre><code class="hljs css">background-origin: padding-box | border-box | content-box;</code></pre>
+							<div>
+								<div>padding-box</div>
+								<div>border-box</div>
+								<div>content-box</div>
+							</div>
+						</section>
+						<section class="blue size">
+							<h4>background-size</h4>
+							<pre><code class="hljs css">background-size: px | % | auto | contain | cover;
+
+/* or as short rule of background */
+background: ... position/size ...;</code></pre>
+							<div>
+								<div>
+									<div></div>
+									<pre><code class="hljs css">background-size: 3em 10px;</code></pre>
+								</div>
+								<div>
+									<div></div>
+									<pre><code class="hljs css">background-size: contain;</code></pre>
+								</div>
+								<div>
+									<div></div>
+									<pre><code class="hljs css">background-size: cover;</code></pre>
+								</div>
+							</div>
+						</section>
+					</section>
+					<!-- /BACKGROUND ATTRIBUTES -->
+
+					<!-- SHADOWS -->
+					<section class="stack shadows">
+						<section class="blue">
+							<h2>Shadows</h2>
+						</section>
+						<section class="blue box-shadow">
+							<h4>Box shadow</h4>
+							<pre><code class="hljs css">box-shadow: x y blur spread color inset;</code></pre>
+							<div>
+								<div>w/ inset</div>
+								<div>w/o inset</div>
+								<div class="fragment">
+									<span class="alt">(x; y)</span>
+									<span>Padding-box shape</span>
+									<span class="alt">Spread distance</span>
+									<span>Border-box shape</span>
+									<span class="alt">Spread distance</span>
+									<span>Blur applied</span>
+								</div>
+							</div>
+						</section>
+						<section class="blue box-example">
+							<pre><code class="hljs css">box-shadow: 0 -50px 5px 0 rgba(255,0,0,0.5),
+	    25px -40px 5px 0 rgba(255,127,0,0.5),
+	    40px -25px 5px 0 rgba(255,255,0,0.5),
+		... another 8 shadows ...
+	    -40px -25px 5px 0 rgba(255,0,255,0.5),
+	    -25px -40px 5px 0 rgba(255,0,127,0.5);</code></pre>
+							<div></div>
+						</section>
+						<section class="blue text-shadow">
+							<h4>Text shadow</h4>
+							<pre><code class="hljs css">text-shadow: x y blur color;</code></pre>
+							<div>
+								<h1>Lorem ipsum</h1>
+								<pre><code class="hljs css">text-shadow: 0 0 1px #464547, 5px 5px 10px #1a9cb0;</code></pre>
+							</div>
+						</section>
+						<section class="blue text-hover">
+							<h4>Blur your text!</h4>
+							<pre class="fragment"><code class="hljs css">/* default font */
+color: #39c2d7;
+
+/* on hover */
+color: transparent;
+text-shadow: 0 0 20px #39c2d7;</code></pre>
+							<h1>HOVER ME!</h1>
+						</section>
+					</section>
+					<!-- /SHADOWS -->
+
+					<!-- GRADIENTS -->
+					<section class="stack gradients">
+						<section class="blue">
+							<h2>Gradients</h2>
+						</section>
+						<section class="blue">
+							<p>you can use linear or radial...</p>
+							<p>...and repeat it if you need</p>
+						</section>
+						<section class="blue linear">
+							<h4>Linear</h4>
+							<pre><code class="hljs css">background-image: linear-gradient(dir, stop-color1, stop-color2, ...);</code></pre>
+							<div></div>
+						</section>
+						<section class="blue direction">
+							<h4>direction</h4>
+							<div class="row">
+								<div>
+									<span>to left</span>
+								</div>
+								<div>
+									<span>to bottom right</span>
+								</div>
+							</div>
+							<div class="row">
+								<div>
+									<span>60deg</span>
+								</div>
+								<div>
+									<span>-135deg</span>
+								</div>
+							</div>
+						</section>
+						<section class="blue colors">
+							<h4>colors</h4>
+							<div class="multi">
+								<span>Multi-color</span>
+							</div>
+							<div class="transparent">
+								<span>Transparency</span>
+							</div>
+						</section>
+						<section class="blue position">
+							<h4>color position</h4>
+							<pre><code class="hljs css">linear-gradient(to right, #39c2d7 10%, transparent 40%, transparent 60%, #b22746 90%);</code></pre>
+							<div></div>
+						</section>
+						<section class="blue radial">
+							<h4>Radial</h4>
+							<pre><code class="hljs css">background: radial-gradient(shape size at position, colors as in linear);</code></pre>
+							<div></div>
+						</section>
+						<section class="blue shape">
+							<h4>Shape</h4>
+							<div>
+								<div>
+									<span>ellipse(default)</span>
+								</div>
+								<div>
+									<span>circle</span>
+								</div>
+							</div>
+						</section>
+						<section class="blue size">
+							<h4>Size</h4>
+							<div class="row">
+								<div>
+									<span>closest-side</span>
+								</div>
+								<div>
+									<span>farthest-side</span>
+								</div>
+							</div>
+							<div class="row">
+								<div>
+									<span>closest-corner</span>
+								</div>
+								<div>
+									<span>farthest-corner</span>
+								</div>
+							</div>
+						</section>
+						<section class="blue repeat">
+							<h4>Repeating gradients</h4>
+							<pre><code class="hljs css">repeating-linear-gradient(to right, #464547, #464547 5%, #1a9cb0 15%, #39c2d7 20%);</code></pre>
+							<div></div>
+							<pre><code class="hljs css">repeating-linear-gradient(to right, #464547, #464547 5%, #1a9cb0 15%, #39c2d7 20%);</code></pre>
+							<div></div>
+						</section>
+						<section class="blue pattern">
+							<h4>Patterns</h4>
+							<pre><code class="hljs css">background-color: #464547 no-repeat;
+background-image: linear-gradient(to right, transparent 50%, #39c2d7 50%);
+background-size: 5% 100%;</code></pre>
+							<div></div>
+							<pre><code class="hljs css">background-color: #464547;
+background-image: linear-gradient(to right, transparent 50%, #39c2d7 50%);
+background-size: 5% 100%;</code></pre>
+							<div></div>
+						</section>
+					</section>
+					<!-- /GRADIENTS -->
+
+					<!-- CSS FILTERS -->
+					<section class="stack filters">
+						<section class="blue">
+							<h2>CSS Filters</h2>
+						</section>
+						<section class="blue">
+							<h4>Filter rule</h4>
+							<p>... 	or -webkit-filter</p>
+							<pre><code class="hljs css">filter: blur(px)
+	brightness(%)
+	contrast(%)
+	drop-shadow(x y blur spread color)
+	grayscale(%)
+	hue-rotate(deg)
+	invert(%)
+	opacity(%)
+	saturate(%)
+	sepia(%)
+	url(svg-url#id);</code></pre>
+						</section>
+						<section class="blue">
+							<div>
+								<div>
+									<pre><code class="hljs css">filter: blur(5px);</code></pre>
+									<div class="blur"></div>
+								</div>
+								<div>
+									<pre><code class="hljs css">filter: brightness(0.3);</code></pre>
+									<div class="brightness"></div>
+								</div>
+								<div>
+									<pre><code class="hljs css">filter: grayscale(1);</code></pre>
+									<div class="grayscale"></div>
+								</div>
+								<div>
+									<pre><code class="hljs css">filter: contrast(2.3);</code></pre>
+									<div class="contrast"></div>
+								</div>
+							</div>
+						</section>
+						<section class="blue">
+							<div>
+								<div>
+									<pre><code class="hljs css">filter: hue-rotate(180deg);</code></pre>
+									<div class="hue-rotate"></div>
+								</div>
+								<div>
+									<pre><code class="hljs css">filter: invert(0.7);</code></pre>
+									<div class="invert"></div>
+								</div>
+								<div>
+									<pre><code class="hljs css">filter: saturate(0.3);</code></pre>
+									<div class="saturate"></div>
+								</div>
+								<div>
+									<pre><code class="hljs css">filter: sepia(1);</code></pre>
+									<div class="sepia"></div>
+								</div>
+							</div>
+						</section>
+					</section>
+					<!-- /CSS FILTERS -->
+
+					<!-- BLEND-MODE -->
+					<section class="stack blend-mode">
+						<section class="blue">
+							<h2>Blend Mode</h2>
+						</section>
+						<section class="blue rule">
+							<h4>mix blend mode values</h4>
+							<pre><code class="hljs css">normal;			multiply;
+screen;			overlay;
+darken;			lighten;
+color-dodge;		color-burn;
+hard-light;		soft-light;
+difference;		exclusion;
+hue;			saturation;
+color;			luminosity;</code></pre>
+						</section>
+						<section class="blue example">
+							<div>
+								<div>
+									<pre><code class="hljs css">mix-blend-mode: normal;</code></pre>
+									<div>
+										<span class="mix-normal">LOREM</span>
+									</div>
+								</div>
+								<div>
+									<pre><code class="hljs css">mix-blend-mode: multiply;</code></pre>
+									<div>
+										<span class="mix-multiply">LOREM</span>
+									</div>
+								</div>
+								<div>
+									<pre><code class="hljs css">mix-blend-mode: screen;</code></pre>
+									<div>
+										<span class="mix-screen">LOREM</span>
+									</div>
+								</div>
+								<div>
+									<pre><code class="hljs css">mix-blend-mode: overlay;</code></pre>
+									<div>
+										<span class="mix-overlay">LOREM</span>
+									</div>
+								</div>
+							</div>
+						</section>
+						<section class="blue example">
+							<div>
+								<div>
+									<pre><code class="hljs css">mix-blend-mode: darken;</code></pre>
+									<div><span class="mix-darken">LOREM</span></div>
+								</div>
+								<div>
+									<pre><code class="hljs css">mix-blend-mode: lighten;</code></pre>
+									<div><span class="mix-lighten">LOREM</span></div>
+								</div>
+								<div>
+									<pre><code class="hljs css">mix-blend-mode: color-dodge;</code></pre>
+									<div><span class="mix-color-dodge">LOREM</span></div>
+								</div>
+								<div>
+									<pre><code class="hljs css">mix-blend-mode: color-burn;</code></pre>
+									<div><span class="mix-color-burn">LOREM</span></div>
+								</div>
+							</div>
+						</section>
+						<section class="blue example">
+							<div>
+								<div>
+									<pre><code class="hljs css">mix-blend-mode: hard-light;</code></pre>
+									<div><span class="mix-hard-light">LOREM</span></div>
+								</div>
+								<div>
+									<pre><code class="hljs css">mix-blend-mode: soft-light;</code></pre>
+									<div><span class="mix-soft-light">LOREM</span></div>
+								</div>
+								<div>
+									<pre><code class="hljs css">mix-blend-mode: difference;</code></pre>
+									<div><span class="mix-difference">LOREM</span></div>
+								</div>
+								<div>
+									<pre><code class="hljs css">mix-blend-mode: exclusion;</code></pre>
+									<div><span class="mix-exclusion">LOREM</span></div>
+								</div>
+							</div>
+						</section>
+						<section class="blue example">
+							<div>
+								<div>
+									<pre><code class="hljs css">mix-blend-mode: hue;</code></pre>
+									<div><span class="mix-hue">LOREM</span></div>
+								</div>
+								<div>
+									<pre><code class="hljs css">mix-blend-mode: saturation;</code></pre>
+									<div><span class="mix-saturation">LOREM</span></div>
+								</div>
+								<div>
+									<pre><code class="hljs css">mix-blend-mode: color;</code></pre>
+									<div><span class="mix-color">LOREM</span></div>
+								</div>
+								<div>
+									<pre><code class="hljs css">mix-blend-mode: luminosity;</code></pre>
+									<div><span class="mix-luminosity">LOREM</span></div>
+								</div>
+							</div>
+						</section>
+					</section>
+					<!-- /BLEND-MODE -->
+				<!-- /SECTION 2 -->
+				
+				<!-- SECTION 3 -->
+				<section data-background="#A3C644" class="has-dark-background-custom green">
+					<h1>Tranform/Animate</h1>
+				</section>
+					<!-- TRANSFORMATIONS -->
+					<section class="stack transforms">
+						<section class="green">
+							<h2>Transformations</h2>
+						</section>
+						<section class="green">
+							<h4>Transform rule</h4>
+							<pre><code class="hljs css">transform: translate | scale | skew | rotate | matrix</code></pre>
+						</section>
+						<section class="green translate">
+							<h4>Translate</h4>
+							<pre><code class="hljs css">transform: translate(X,Y); /* or traslateX(X) | translateY(Y) */</code></pre>
+							<div>
+								<div>origin</div>
+								<div>translated</div>
+							</div>
+						</section>
+						<section class="green scale">
+							<h4>Scale</h4>
+							<pre><code class="hljs css">transform: scale(sX,sY); /* or scaleX(sx) | scaleY(sy) */</code></pre>
+							<div>
+								<div>origin</div>
+								<div>scaled</div>
+							</div>
+						</section>
+						<section class="green skew">
+							<h4>Skew</h4>
+							<pre><code class="hljs css">transform: skew(Xdeg,Ydeg); /* or skewX(x) | skewY(y) */</code></pre>
+							<div>
+								<div>
+									<div>origin</div>
+									<div>skewedX</div>
+								</div>
+
+								<div>
+									<div>origin</div>
+									<div>skewedY</div>
+								</div>
+							</div>
+						</section>
+						<section class="green rotate">
+							<h4>Rotate</h4>
+							<pre><code class="hljs css">transform: rotate(deg); /* or rotateX(deg) | rotateY(deg) */</code></pre>
+							<div>
+								<div>
+									<div>origin</div>
+									<div>rotate</div>
+								</div>
+
+								<div>
+									<div>origin</div>
+									<div>rotateX</div>
+								</div>
+
+								<div>
+									<div>origin</div>
+									<div>rotateY</div>
+								</div>
+							</div>
+						</section>
+						<section class="green matrix">
+							<h4>Matrix</h4>
+							<pre><code class="hljs css">transform: matrix(
+	   a,  b, /* scaleX and skewY */			| a  b  0 |
+	   c,  d, /* skewY and scaleY */			| c  d  0 |
+	   tx, ty /* translateX and translateY */		| tx ty 1 |
+	   );
+
+  /* only numerals, scale in ratio | skew in rads | translate in px */</code></pre>
+							<div>
+								<div>origin</div>
+								<div>MATRIX</div>
+							</div>
+						</section>
+						<section class="green fulcrum">
+							<h4>Transform fulcrum</h4>
+							<pre><code class="hljs css">transform-origin: x y z;
+		/* x as [left | center | right]*/
+		/* y as [top | center | bottom]*/
+		/* z as [length]*/</code></pre>
+							<div>
+								<div>
+									<div>origin</div>
+									<div>default</div>
+								</div>
+
+								<div>
+									<div>origin</div>
+									<div>left top</div>
+								</div>
+							</div>
+						</section>
+						<section class="green">
+							<h4>Transform in 3D</h4>
+							<pre><code class="hljs css">transform: translate3D | scale3D | rotate3D | matrix3D</code></pre>
+						</section>
+						<section class="green plane">
+							<h4>Transform plane</h4>
+							<pre><code class="hljs css">transform-style: flat(default) | preserve-3d;</code></pre>
+							<div>
+								<div>
+									<div>origin</div>
+									<div>
+										<div>flat</div>
+									</div>
+								</div>
+
+								<div>
+									<div>origin</div>
+									<div>
+										<div>preserve-3D</div>
+									</div>
+								</div>
+							</div>
+						</section>
+						<section class="green perspective">
+							<h4>Perspective</h4>
+							<pre><code class="hljs css">perspective: [length];
+/* or apply to transform like transform: perspective(100px) rotateX(10deg); */</code></pre>
+							<div class="cube">
+								<div class="front">1</div>
+								<div class="back">6</div>
+								<div class="right">4</div>
+								<div class="left">3</div>
+								<div class="top">5</div>
+								<div class="bottom">2</div>
+							</div>
+						</section>
+						<section class="green parent-child">
+							<h4>Perspective on parent/childs</h4>
+							<div>
+								<pre><code class="hljs css">/* on parent */
+perspective: 600px;
+
+/* on child */
+transform: rotateY(60deg);
+
+</code></pre>
+
+								<pre><code class="hljs css">/* on parent */
+/* nothing */
+
+/* on child */
+transform: perspective(600px)
+	   rotateY(60deg);</code></pre>
+	   						</div>
+	   						<div>
+								<div>
+									<div></div>
+									<div></div>
+								</div>
+								<div>
+									<div></div>
+									<div></div>
+								</div>
+							</div>
+						</section>
+						<section class="green perspective origin">
+							<h4>Perspective origin</h4>
+							<pre><code class="hljs css">perspective-origin: x y;</code></pre>
+							<div class="cube">
+								<div class="front">1</div>
+								<div class="back">6</div>
+								<div class="right">4</div>
+								<div class="left">3</div>
+								<div class="top">5</div>
+								<div class="bottom">2</div>
+							</div>
+						</section>
+						<section class="green backface">
+							<h4>Backface</h4>
+							<pre><code class="hljs css">backface-visibility: visible(default) | hidden;</code></pre>
+							<div>
+								<div>visible</div>
+								<div>hidden</div>
+							</div>
+						</section>
+						<section class="green translate-3d">
+							<h4>Translate3D</h4>
+							<pre><code class="hljs css">transform: translate3D(X,Y,Z); /* also can use only translateZ(Z) for Z-axis */</code></pre>
+							<div>
+								<div>origin</div>
+								<div>translated</div>
+							</div>
+						</section>
+						<section class="green scale-3d">
+							<h4>Scale3D</h4>
+							<pre><code class="hljs css">transform: scale3D(sX,sY,sZ); /* scaleZ(Z) */</code></pre>
+							<div>
+								<div>origin</div>
+								<div>scaled</div>
+							</div>
+						</section>
+						<section class="green rotate-3d">
+							<h4>Rotate3D</h4>
+							<pre><code class="hljs css">transform: rotate3D(X,Y,Z,angle);</code></pre>
+							<div>	
+								<div>origin</div>
+								<div>rotate</div>
+							</div>
+						</section>
+						<section class="green rotate-3d-negative">
+							<div>
+								<div>
+									<div>origin</div>
+									<div>( 0, 0, -1, 180deg)</div>
+								</div>
+								<div>
+									<div>origin</div>
+									<div>( 0, 0, 1, 180deg)</div>
+								</div>
+							</div>
+						</section>
+						<section class="green matrix-3d">
+							<h4>Matrix3D</h4>
+							<pre><code class="hljs css">transform: matrix3D(
+	a1, b1, c1, d1,					| sX 0  0  0 |
+	a2, sy, c2, d2,					| 0  sY 0  0 |
+	a3, b3, sz, d3,					| 0  0  sZ 0 |
+	a4, b4, c4, d4					| tx ty tz 1 |
+);</code></pre>
+							<div>
+								<div>origin</div>
+								<div>MATRIX</div>
+							</div>
+						</section>
+					</section>
+					<!-- /TRANSFORMATIONS -->
+
+					<!-- TRANSITIONS -->
+					<section class="stack transitions">
+						<section class="green">
+							<h2>TRANSITIONS</h2>
+						</section>
+						<section class="green">
+							<h4>Transition rule</h4>
+							<pre><code class="hljs css">transition: transition-property /* all | single-css-animatable-property */
+	    transition-duration /* s | ms */
+	    transition-timing-function /* standart | steps | cubic-bezier */
+	    transition-delay; /* s | ms */</code></pre>
+						</section>
+						<section class="green">
+							<h4>Timing functions</h4>
+							<pre><code class="hljs css">transition-timing-function: linear /* cubic-bezier(0,0,1,1) */
+			    ease /* cubic-bezier(0.25,0.1,0.25,1) */
+			    ease-in /* cubic-bezier(0.42,0,1,1) */
+			    ease-out /* cubic-bezier(0,0,0.58,1)) */
+			    ease-in-out /* cubic-bezier(0.42,0,0.58,1)) */
+			    steps(int, start|end)
+			    step-start /* steps(1, start) */
+			    step-end /* steps(1, end) */
+			    cubic-bezier(x1,y1,x2,y2) /* X must be in [0, 1] */</code></pre>
+						</section>
+						<section class="green timing-functions">
+							<div class="wrapper">
+								<div>linear</div>
+								<div>ease</div>
+								<div>ease-in</div>
+								<div>ease-out</div>
+								<div>ease-in-out</div>
+								<div>steps(4,start)</div>
+								<div>steps(4,end)</div>
+								<div>step-start</div>
+								<div>step-end</div>
+								<div>cubic-bezier(1,0,0,1)</div>
+								<div>cubic-bezier(1,-1,0.3,2)</div>
+							</div>
+						</section>
+						<section class="green example">
+							<div>
+								<div>
+									<span>only background</span>
+								</div>
+								<div>
+									<span>delay 2s</span>
+								</div>
+								<div>
+									<span>cubic-bezier(0.3, -5, 0.7, 5)</span>
+								</div>
+								<div>
+									<span>cubic-bezier(0, 1, 1, 0)</span>
+								</div>
+							</div>
+						</section>
+						<section class="green ui-elements">
+							<div>
+								<ul>
+									<b>default</b>
+									<li><span href="" class="link">link</span></li>
+									<li><span href="" class="btn blue">button</span></li>
+									<li><span href="" class="btn green">button</span></li>
+									<li><span href="" class="btn red">button</span></li>
+									<li><span href="" class="btn border">button</span></li>
+									<li><input type="text" class="input" placeholder="hint"></li>
+								</ul>
+								<ul class="transition">
+									<b>with transition</b>
+									<li><span href="" class="link">link</span></li>
+									<li><span href="" class="btn blue">button</span></li>
+									<li><span href="" class="btn green">button</span></li>
+									<li><span href="" class="btn red">button</span></li>
+									<li><span href="" class="btn border">button</span></li>
+									<li><input type="text" class="input" placeholder="hint"></li>
+								</ul>
+							</div>
+						</section>
+						<section class="green jump">
+							<ul>
+								<li><div></div></li>
+								<li><div></div></li>
+								<li><div></div></li>
+								<li><div></div></li>
+								<li><div></div></li>
+								<li><div></div></li>
+							</ul>
+						</section>
+					</section>
+					<!-- /TRANSITIONS -->
+
+					<!-- ANIMATIONS -->
+					<section class="stack animations">
+						<section class="green">
+							<h2>ANIMATIONS</h2>
+						</section>
+						<section class="green">
+							<h4>Animation rule</h4>
+							<pre><code class="hljs css">animation: animation-name
+	   animation-duration
+	   animation-timing-function
+	   animation-delay
+	   animation-iteration-count /* number | infinite */
+	   animation-direction
+	   animation-fill-mode
+	   animation-play-state; /* running | paused */</code></pre>
+						</section>
+						<section class="green">
+							<h4>@keyframes rule</h4>
+							<pre><code class="hljs css">@keyframes animation-name {
+	from(0%) {
+		/* start rules here */
+	}
+	
+	/* any keyframes here by % of animation flow */
+
+	to(100%) {
+		/* end rules here */	
+	}
+}</code></pre>
+						</section>
+						<section class="green rule">
+							<h4>@keyframes rule</h4>
+							<pre><code class="hljs css">@keyframes colorChange {
+	from { background: #a3c644; color: #464547; }
+	33% { background: #7f993a; }
+	66% { color: #7f993a; }
+	to { background: #464547; color: #a3c644; }
+}
+
+div {
+	animation: colorChange 4s linear infinite;
+}</code></pre>
+							<div> LOREM IPSUM </div>
+							<div> LOREM IPSUM </div>
+						</section>
+						<section class="green direction">
+							<h4>Animation direction</h4>
+							<pre><code class="hljs css">animation-direction: normal | reverse | alternate | alternate-reverse;</code></pre>
+							<div class="wrapper">
+								<div>normal</div>
+								<div>reverse</div>
+								<div>alternate</div>
+								<div>alternate-reverse</div>
+							</div>
+						</section>
+						<section class="green fill-mode">
+							<h4>Animation fill mode</h4>
+							<pre><code class="hljs css">animation-fill-mode: none | forwards | backwards | both;</code></pre>
+							<div class="wrapper">
+								<div>none</div>
+								<div>forwards</div>
+								<div>backwards</div>
+								<div>both</div>
+							</div>
+						</section>
+						<section class="green play-state">
+							<h4>Animation play state</h4>
+							<pre><code class="hljs css">animation-play-state: running | paused;</code></pre>
+							<div>	
+								<div class="circle-text"></div>
+								<div class="circle"></div>
+								<div class="running-guy"></div>
+							</div>
+						</section>
+					</section>
+					<!-- /ANIMATIONS -->
+				<!-- /SECTION 3 -->
+				
+				<!-- SECTION 4 -->
+				<section data-background="#B22746" class="has-dark-background-custom red">
+					<h1>Layout</h1>
+				</section>
+					<!-- FLEX -->
+					<section class="stack flex">
+						<section class="red">
+							<h2>Flex</h2>
+						</section>
+						<section class="red rule">
+							<h4>Flex-box rule</h4>		
+							<pre><p class="fragment"><code class="hljs css lined">display: box;</code><code class="hljs css">/* 2009 */</code></p>
+<p class="fragment"><code class="hljs css lined">display: flexbox;</code><code class="hljs css">/* 2011 */</code></p>
+<p class="fragment last"><code class="hljs css">display: flex | inline-flex;</code><code class="hljs css">/* current */</code></p></pre>
+						</section>
+						<section class="red inline-flex">
+							<h4>flex vs inline-flex</h4>
+							<div class="box">
+								<div>Lorem</div><div>ipsum</div><div>dolor</div><div>sit amet,</div>
+								<div>nec ei</div><div>probo</div><div>sanctus</div><div>interesset</div>
+							</div>
+							<div class="box">
+								<div>Lorem</div><div>ipsum</div><div>dolor</div><div>sit amet,</div>
+								<div>nec ei</div><div>probo</div><div>sanctus</div><div>interesset</div>	
+							</div>
+						</section>
+						<section class="red">
+							<h4>Flex wrapper<small>(parent)</small> options</h4>
+						</section>
+						<section class="red axis">
+							<h4>Content flow</h4>
+							<div>
+								<div class="arrow main">
+									<span>Main axis</span>
+								</div>
+								<div class="arrow cross">
+									<span>Cross axis</span>
+								</div>
+							</div>
+						</section>
+						<section class="red direction">
+							<pre><code class="hljs css">			/* Main axis — horizontal */
+flex-direction: row(default);		/* left-to-right */
+flex-direction: row-reverse;		/* right-to-left */
+
+			/*  Main axis — vertical */
+flex-direction: column;			/* top-to-bottom */
+flex-direction: column-reverse;		/* bottom-to-top */</code></pre>
+							<div>
+								<div>
+									<p>horizontal main axis</p>
+									<div class="box">
+										<div>1</div><div>2</div><div>3</div><div>4</div><div>5</div>
+									</div>
+									<div class="box">
+										<div>1</div><div>2</div><div>3</div><div>4</div><div>5</div>
+									</div>
+								</div>
+								<div>
+									<p>vertical main axis</p>
+									<div>
+										<div class="box">
+											<div>1</div><div>2</div><div>3</div>
+										</div>
+										<div class="box">
+											<div>1</div><div>2</div><div>3</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</section>
+						<section class="red wrap">
+							<h4>wrapping</h4>
+							<pre><code class="hljs css">flex-wrap: nowrap(default) | wrap | wrap-reverse</code></pre>
+							<div>
+								<small>default, w/o wrapping</small>
+								<div class="box">
+									<div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div>
+								</div>
+							</div>
+							<div>
+								<div>
+									<small>standart wrappping ttb</small>
+									<div class="box">
+										<div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div>
+									</div>
+								</div>
+								<div>
+									<small>reverse wrappping btt</small>
+									<div class="box">
+										<div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div>
+									</div>
+								</div>
+							</div>
+						</section>
+						<section class="red flow">
+							<h4>Flex flow shorthand rule</h4>
+							<pre><code class="hljs css">flex-flow: flex-direction flex-wrap;</code></pre>
+							<div>
+								<small>row-reverse wrap-reverse</small>
+								<div class="box">
+									<div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div>
+								</div>
+							</div>
+						</section>
+						<section class="red justify-content">
+							<h4>Align on main axis</h4>
+							<pre><code class="hljs css">justify-content: flex-start(default)
+		 flex-end 
+		 center
+		 space-between
+		 space-around;</code></pre>
+		 					<div>
+								<div>
+									<small>flex-start(default)</small>
+									<div class="box">
+										<div>1</div><div>2</div><div>3</div>
+									</div>
+								</div>
+								<div>
+									<small>flex-end</small>
+									<div class="box">
+										<div>1</div><div>2</div><div>3</div>
+									</div>
+								</div>
+							</div>
+							<div>
+								<small>center</small>
+								<div class="box">
+									<div>1</div><div>2</div><div>3</div>
+								</div>
+							</div>
+							<div>
+								<div>
+									<small>space-between</small>
+									<div class="box">
+										<div>1</div><div>2</div><div>3</div>
+									</div>
+								</div>
+								<div>
+									<small>space-around</small>
+									<div class="box">
+										<div>1</div><div>2</div><div>3</div>
+									</div>
+								</div>
+							</div>
+						</section>
+						<section class="red align-items">
+							<h4>Align on cross axis</h4>
+							<pre><code class="hljs css">align-items: flex-start
+	     flex-end 
+	     center
+	     baseline
+	     stretch(default);</code></pre>
+							<div>
+								<div>
+									<small>flex-start</small>
+									<div class="box">
+										<div>1</div><div>2</div>
+									</div>
+								</div>
+								<div>
+									<small>flex-end</small>
+									<div class="box">
+										<div>1</div><div>2</div>
+									</div>
+								</div>
+								<div>
+									<small>center</small>
+									<div class="box">
+										<div>1</div><div>2</div>
+									</div>
+								</div>
+								<div>
+									<small>baseline</small>
+									<div class="box">
+										<div>1</div><div>2</div>
+									</div>
+								</div>
+								<div>
+									<small>stretch(default)</small>
+									<div class="box">
+										<div>1</div><div>2</div>
+									</div>
+								</div>
+							</div>
+						</section>
+						<section class="red">
+							<h4>Align on cross axis for multiline flexbox</h4>
+							<small>multiline flex = flex-wrap: wrap | wrap-reverse;</small>
+							<pre><code class="hljs css">align-content: flex-start
+	       flex-end 
+	       center
+	       stretch(default)
+	       space-between
+	       space-around;</code></pre>
+						</section>
+						<section class="red align-content">
+							<div>
+								<div>
+									<small>flex-start</small>
+									<div class="box">
+										<div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div>
+									</div>
+								</div>
+								<div>
+									<small>flex-end</small>
+									<div class="box">
+										<div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div>
+									</div>
+								</div>
+								<div>
+									<small>center</small>
+									<div class="box">
+										<div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div>
+									</div>
+								</div>
+								<div>
+									<small>stretch(default)</small>
+									<div class="box">
+										<div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div>
+									</div>
+								</div>
+								<div>
+									<small>space-between</small>
+									<div class="box">
+										<div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div>
+									</div>
+								</div>
+								<div>
+									<small>space-around</small>
+									<div class="box">
+										<div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div>
+									</div>
+								</div>
+							</div>
+						</section>
+						<section class="red">
+							<h4>Flex item<small>(child)</small> options</h4>
+						</section>
+						<section class="red order">
+							<h4>Order</h4>
+							<pre><code class="hljs css">order: number;</code></pre>
+							<div>
+								<div>
+									<small>normal ordered</small>
+									<div class="box">
+										<div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div>
+									</div>
+								</div>
+								<div>
+									<small>custom ordered</small>
+									<div class="box">
+										<div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div>
+									</div>
+								</div>
+							</div>
+						</section>
+						<section class="red align-self">
+							<h4>Align for single item on cross axis</h4>
+							<pre><code class="hljs css">align-self: auto(default)
+	     flex-start
+	     flex-end 
+	     center
+	     baseline
+	     stretch;</code></pre>
+	     					<div>
+								<div>
+									<small>flex-start</small>
+									<div class="box">
+										<div>1</div><div>2</div>
+									</div>
+								</div>
+								<div>
+									<small>flex-end</small>
+									<div class="box">
+										<div>1</div><div>2</div>
+									</div>
+								</div>
+								<div>
+									<small>center</small>
+									<div class="box">
+										<div>1</div><div>2</div>
+									</div>
+								</div>
+								<div>
+									<small>baseline</small>
+									<div class="box">
+										<div>1</div><div>2</div>
+									</div>
+								</div>
+								<div>
+									<small>stretch(default)</small>
+									<div class="box">
+										<div>1</div><div>2</div>
+									</div>
+								</div>
+							</div>
+						</section>
+						<section class="red basis-grow-shrink">
+							<h4>item basis and grow/shrink factor</h4>
+							<div class="fragment flex-basis">
+								<pre><code class="hljs css">flex-basis: length;</code></pre>
+								<div class="box">
+									<div>200px</div><div>20px</div><div>150px</div>
+								</div>
+							</div>
+							<div class="fragment flex-grow">
+								<pre><code class="hljs css">flex-grow: n;</code></pre>
+								<div class="box">
+									<div>2</div><div>1</div><div>3</div>
+								</div>
+							</div>
+							<div class="fragment flex-shrink">
+								<pre><code class="hljs css">flex-shrink: n;</code></pre>
+								<div class="box">
+									<div>2</div><div>1</div><div>3</div>
+								</div>
+							</div>
+						</section>
+						<section class="red basis-grow-shrink-short">
+							<h4>shorthand rule for grow,shrink and basis</h4>
+							<pre><code class="hljs css">flex: flex-grow flex-shrink flex-basis; /* default - flex: 0 0 auto; */</code></pre>
+							<div class="box">
+								<div>2 | 1 | 100px</div><div>1 | 2 | 300px</div><div>2 | 1 | 100px</div>
+							</div>
+							<div class="box">
+								<div>2 | 1 | 500px</div><div>1 | 2 | 400px</div><div>2 | 1 | 300px</div>
+							</div>
+							<div class="fragment">
+								<div>
+									<p>grow factor</p>
+									<div>
+										<span><b>free space:</b> parent-width — &sum; flex-basis</span>
+									</div>
+									<div>
+										<b>grow-proportion:</b>
+										<div>
+											<span>flex-grow</span>
+											<span>&sum; flex-grow</span>
+										</div>
+									</div>
+									<div>
+										<p><b>item width on grow:</b></p>
+										<span>flex-basis + grow-proportion*free-space</span>
+									</div>
+								</div>
+								<div>
+									<p>shrink factor</p>
+									<div>
+										<span><b>free space:</b> parent-width — &sum; flex-basis</span>
+									</div>
+									<div>
+										<b>shrink-proportion:</b>
+										<div>
+											<span>flex-shrink*flex-basis</span>
+											<span>&sum; flex-shrink*flex-basis</span>
+										</div>
+									</div>
+									<div>
+										<p><b>item width on shrink:</b></p>
+										<span>flex-basis + shrink-proportion*free-space</span>
+									</div>
+								</div>
+							</div>
+						</section>
+						<section class="red">
+							<h4>simple flex demo</h4>
+						</section>
+						<section class="red demo">
+							<h4>adaptive multicolumn layout w/ navbar</h4>
+							<div id="button-set">
+								<p><small>change size</small></p>
+								<span data-width="360px" data-size="small">small</span>
+								<span data-width="640px" data-size="middle">middle</span>
+								<span class="current" data-width="100%" data-size="large">large</span>
+							</div>
+							<div class="wrapper large" id="wrapper">
+								<header class="header">
+									<nav>
+										<ul class="navigation">
+											<li><span href="">Home</span></li>
+											<li><span href="">About</span></li>
+											<li><span href="">Products</span></li>
+											<li><span href="">Contact</span></li>
+										</ul>
+									</nav>
+								</header>
+								<article class="main">
+									<p>MAIN LOREM IPSUM</p>  
+								</article>
+								<aside class="aside aside-1">ASIDE LOREM</aside>
+								<aside class="aside aside-2">ASIDE IPSUM</aside>
+								<footer class="footer">Footer</footer>
+							</div>
+						</section>
+					</section>
+					<!-- /FLEX -->
+
+					<!-- COLUMNS -->
+					<section class="stack columns">
+						<section class="red">
+							<h2>Columns</h2>
+						</section>
+						<section class="red rule">
+							<h4>Multi-columns rule</h4>
+							<pre><code class="hljs css">columns: column-width column-count;</code></pre>
+							<div>
+								<div>
+									<pre><code class="hljs css">column-count: 2;</code></pre>
+									<small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean scelerisque turpis eu dui porttitor auctor. Cras gravida augue est, eget euismod nisi finibus eget. Pellentesque at ipsum vitae metus consequat iaculis id id nibh. Ut sodales nulla ut nisi ultrices dignissim. Praesent vitae dignissim velit. Ut ac scelerisque massa.</small>
+								</div>
+								<div>
+									<pre><code class="hljs css">columns-width: 100px;</code></pre>
+									<small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean scelerisque turpis eu dui porttitor auctor. Cras gravida augue est, eget euismod nisi finibus eget. Pellentesque at ipsum vitae metus consequat iaculis id id nibh. Ut sodales nulla ut nisi ultrices dignissim. Praesent vitae dignissim velit. Ut ac scelerisque massa.</small>
+								</div>
+							</div>
+						</section>
+						<section class="red gap">
+							<h4>Columns gap</h4>
+							<pre><code class="hljs css">column-gap: length | normal; /* normal = 1em */</code></pre>
+							<div>
+								<pre><code class="hljs css">column-gap: 200px;</code></pre>
+								<small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean scelerisque turpis eu dui porttitor auctor. Cras gravida augue est, eget euismod nisi finibus eget. Pellentesque at ipsum vitae metus consequat iaculis id id nibh. Ut sodales nulla ut nisi ultrices dignissim. Praesent vitae dignissim velit. Ut ac scelerisque massa. Phasellus vitae purus eget nisi gravida interdum. Morbi ultrices tortor in lectus cursus, et sodales arcu feugiat. Vestibulum vel tempor quam. Phasellus at commodo mi. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas nec congue velit, vitae blandit risus. Vivamus scelerisque in dui in tincidunt. Aliquam sed dui erat. Praesent urna nunc, tempor id tellus sed, suscipit iaculis sem.</small>
+							</div>
+						</section>
+						<section class="red separator">
+							<h4>Columns separator</h4>
+							<pre><code class="hljs css">column-rule: column-rule-width column-rule-style column-rule-color;</code></pre>
+							<div>
+								<pre><code class="hljs css">column-rule: 4px solid #464547;</code></pre>
+								<small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean scelerisque turpis eu dui porttitor auctor. Cras gravida augue est, eget euismod nisi finibus eget. Pellentesque at ipsum vitae metus consequat iaculis id id nibh. Ut sodales nulla ut nisi ultrices dignissim. Praesent vitae dignissim velit. Ut ac scelerisque massa. Phasellus vitae purus eget nisi gravida interdum. Morbi ultrices tortor in lectus cursus, et sodales arcu feugiat. Vestibulum vel tempor quam. Phasellus at commodo mi. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas nec congue velit, vitae blandit risus. Vivamus scelerisque in dui in tincidunt. Aliquam sed dui erat. Praesent urna nunc, tempor id tellus sed, suscipit iaculis sem.</small>
+							</div>
+						</section>
+						<section class="red span">
+							<h4>Spanning columns</h4>
+							<pre><code class="hljs css">column-span: none | all;</code></pre>
+							<div>
+								<pre><code class="hljs css">h4 {
+    column-span: all;
+}</code></pre>
+								<div>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean scelerisque turpis eu dui porttitor auctor. Cras gravida augue est, eget euismod nisi finibus eget. Pellentesque at ipsum vitae metus consequat iaculis id id nibh.
+									<h4>yeah ... dat borin' lorem ipsum agn ... nafin' new</h4>
+									Ut sodales nulla ut nisi ultrices dignissim. Praesent vitae dignissim velit. Ut ac scelerisque massa. Phasellus vitae purus eget nisi gravida interdum. Morbi ultrices tortor in lectus cursus, et sodales arcu feugiat. Vestibulum vel tempor quam. Phasellus at commodo mi. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas nec congue velit, vitae blandit risus. Vivamus scelerisque in dui in tincidunt. Aliquam sed dui erat. Praesent urna nunc, tempor id tellus sed, suscipit iaculis sem.
+								</div>
+							</div>
+						</section>
+						<section class="red">
+							<h4>breaks sentences</h4>
+						</section>
+						<section class="red break">
+							<pre><code class="hljs css">break-after(break-before): auto | always | avoid
+			   left | right | page | column
+			   avoid-page | avoid-column;</code></pre>
+							<div class="fragment">
+								<pre><code class="hljs css">break-inside: auto | avoid | avoid-page | avoid-column;</code></pre>
+								<div>
+									<ul>
+											<li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+											<li>Mauris eu risus.</li>
+											<li>Vestibulum auctor dapibus neque.</li>
+											<li>Consectetuer adipiscing elit.</li>
+											<li>Eu risus.</li>
+											<li>Vestibulum auctor dapibus neque.</li> 
+											<li>Lorem ipsum dolor sit amet</li>
+											<li>Aliquam tincidunt mauris eu risus. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+											<li>Vestibulum auctor dapibus neque.</li>
+									</ul>
+
+									<ul>
+											<li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+											<li>Mauris eu risus.</li>
+											<li>Vestibulum auctor dapibus neque.</li>
+											<li>Consectetuer adipiscing elit.</li>
+											<li>Eu risus.</li>
+											<li>Vestibulum auctor dapibus neque.</li> 
+											<li>Lorem ipsum dolor sit amet</li>
+											<li>Aliquam tincidunt mauris eu risus. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+											<li>Vestibulum auctor dapibus neque.</li>
+									</ul>
+								</div>
+							</div>
+						</section>
+						<section class="red fill">
+							<h4>filling the space</h4>
+							<pre><code class="hljs css">column-fill: auto | balance;</code></pre>
+							<div>
+								<div>
+									<p>balance</p>
+									<div>
+										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean scelerisque turpis eu dui porttitor auctor. Cras gravida augue est, eget euismod nisi finibus eget. Pellentesque at ipsum vitae metus consequat iaculis id id nibh.
+									</div>
+								</div>
+								<div>
+									<p>auto</p>
+									<div>
+										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean scelerisque turpis eu dui porttitor auctor. Cras gravida augue est, eget euismod nisi finibus eget. Pellentesque at ipsum vitae metus consequat iaculis id id nibh.
+									</div>
+								</div>
+							</div>
+						</section>
+					</section>
+					<!-- /COLUMNS -->
+				<!-- /SECTION 4 -->
+				<section class="end">
+					<h1>THE END</h1>
+					<h2>thank you!</h2>
+					<h4>...and your questions start here <span>&#9786;</span></h4>
+				</section>
+			<!-- /SLIDES -->
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+		<script>
+			Reveal.initialize({
+				history: true,
+
+				transition: 'slide',
+
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+			function uiChange(e) {
+				var progress = document.querySelector('.progress');
+				var controls = document.querySelector('.controls')
+				if (e.currentSlide.className.match('blue')) {
+					progress.className = 'progress blue';
+					controls.className = 'controls blue';
+				} else {
+					if (e.currentSlide.className.match('green')) {
+						progress.className = 'progress green';
+						controls.className = 'controls green';
+					} else {
+						if (e.currentSlide.className.match('red')) {
+							progress.className = 'progress red';
+							controls.className = 'controls red';
+						} else {
+							if (e.currentSlide.className.match('title')) {
+								progress.className = 'progress hide';
+								controls.className = 'controls hide';
+							} else {
+								progress.className = 'progress';
+								controls.className = 'controls';
+							}
+						}
+					}
+				}
+			}
+
+			Reveal.addEventListener('slidechanged', function(e) {
+				uiChange(e);
+			});
+
+			Reveal.addEventListener('ready', function(e) {
+				uiChange(e);
+			});
+
+			var buttonSet = document.getElementById('button-set');
+
+			buttonSet.addEventListener('click', function(e) {
+				var target = e.target;
+				if (target.tagName === 'SPAN') {
+					var prev = document.querySelector('.current');
+					if (prev) {
+						prev.classList.remove('current');
+					}
+
+					target.classList.add('current');
+
+					var wrapper = document.getElementById('wrapper');
+					var width = target.dataset.width;
+					var size = target.dataset.size;
+
+					if (wrapper.className == 'wrapper' && size == 'large') {
+						wrapper.style.width = '640px';
+						setTimeout(function() {
+							wrapper.classList.add('middle');
+							wrapper.style.width = width;
+							setTimeout(function() {
+								wrapper.classList.remove('middle');
+								wrapper.classList.add(size);
+							}, 150);
+						}, 150);
+					} else {
+						if (wrapper.className == 'wrapper large' && size == 'small') {
+							wrapper.style.width = '640px';
+							setTimeout(function() {
+								wrapper.classList.remove('large');
+								wrapper.classList.add('middle');
+								wrapper.style.width = width;
+								setTimeout(function() {
+									wrapper.classList.remove('middle');
+								}, 150);
+							}, 150);
+						} else {
+							wrapper.style.width = width;
+							setTimeout(function() {
+								wrapper.classList.remove('middle', 'large');
+								if (size != 'small') {
+									wrapper.classList.add(size);
+								}
+							}, 150);
+						}
+					}
+				}
+			});
+		</script>
+	</body>
+</html>
